@@ -20,6 +20,7 @@ The code you will write in this assignment should be general enough to support a
 Your first step is to define a class which will be used to model the N-gram model over a text. The class must be called __Ngram__, and it needs a constructor with arguments filename (the path to a file from which the model will be extracted) and n (representing N). The default value for filename must be the empty string, and n will be zero if not specified otherwise, In addition to the filename and N, the class must. have three dictionaries as instance variables, which need to be initialized by the constructor, but are going to be filled during the later tasks. Their names must be __raw_counts__, __prob__, and __cond_prob__.
 
 Example Usage:
+
 ![A Class for Storing N-gram Models](https://github.com/ShahzaibWaseem/Python/blob/master/N-Gram/images/1.png?raw=true)
 
 ## Task 2: Extracting N-grain Counts
@@ -38,6 +39,7 @@ for each line in the file
 ```
 
 Example Usage:
+
 ![Extracting N-grain Counts](https://github.com/ShahzaibWaseem/Python/blob/master/N-Gram/images/2.png?raw=true)
 
 ## Task 3: Computing N-gram Probabilities
@@ -45,6 +47,7 @@ Example Usage:
 The next step is to convert the raw frequency counts into probabilities. For the implementation of the class method __extract_probabilities()__, you need to compute the sum of all raw counts (= the total number of N-grams in the sentence list), and then fill the dictionary assigned to the _prob_ instance variable with the raw counts divided by the sum of all counts.
 
 Example Usage:
+
 ![Computing N-gram Probabilities](https://github.com/ShahzaibWaseem/Python/blob/master/N-Gram/images/3.png?raw=true)
 
 ## Task 4: Computing Conditional Unigram Probabilities
@@ -63,6 +66,7 @@ for every dictionary in the values of cond_prob
 ```
 
 Example Usage:
+
 ![Computing Conditional Unigram Probabilities](https://github.com/ShahzaibWaseem/Python/blob/master/N-Gram/images/4.png?raw=true)
 
 ## Task 5: Generating Random Tokens in Context
@@ -70,11 +74,14 @@ Example Usage:
 Finally, we have the probability distribution that can he used to sample plausible next token given the previous N-1 tokens. Implement this functionality in a new class method __generate_random_token(mgram)__, which takes a N-1-gram in the tuple encoding, and randomly generates a plausible next token by sampling from the probability distribution you stored in __cond_prob[mgram]__ . In Python 3.6 or higher (the version you should he using), this can easily be done using the __choices()__ function from the package _random_. Compare the documentation, or the slides of Session 11. for usage examples. All you really need to do for this task is to prepare two lists, and feed them to choices() as arguments.
 
 Example Usage:
+
 ![Generating Random Tokens in Context](https://github.com/ShahzaibWaseem/Python/blob/master/N-Gram/images/5.png?raw=true)
 
 
 ## Task 6: Generating Random Sentences
 
 The last step is to implement the method __generate_random_sentence()__ for generating a random sentence with the help of the __generate_random_token(mgram)__ function. The key idea is to initialize the sentence with a list of N-1 instances of "EOS", and adding random words based on the last N-1 of the current list until "EOS" is generated for the first time. Removing the "BOS" and "EOS" dummy tokens from the resulting list gives you the final sentence to return. You can use the provided helper function __list2str(sentence)__ to format the generated sentence list as a string.
+
 Example Usage:
+
 ![Generating Random Sentences](https://github.com/ShahzaibWaseem/Python/blob/master/N-Gram/images/6.png?raw=true)
